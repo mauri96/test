@@ -1,0 +1,29 @@
+container{
+    margin: 0;
+    padding: 0;
+}
+
+
+.panel-body{
+    max-width: 400px;
+    margin: 100px auto;
+
+
+
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+  }
+
+
+
+
+table{
+    margin: 100px;
+    height: auto;
+    width: 80%;
+
+  
+}

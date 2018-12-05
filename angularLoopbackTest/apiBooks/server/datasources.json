@@ -1,0 +1,12 @@
+{
+  "db": {
+    "host": "ds119736.mlab.com:19736/api_books",
+    "port": 19736,
+    "url": "mongodb://newUser:api_books1@ds119736.mlab.com:19736/api_books",
+    "database": "api_books",
+    "password": "api_books1",
+    "name": "db",
+    "user": "newUser",
+    "connector": "mongodb"
+  }
+}
