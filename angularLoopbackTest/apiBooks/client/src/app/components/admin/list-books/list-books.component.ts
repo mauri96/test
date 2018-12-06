@@ -14,7 +14,7 @@ export class ListBooksComponent implements OnInit {
   constructor(private dataApiService:DataApiService) { }
 
   private books:BookInterface;
-
+  pageActual:number=1;
   ngOnInit() {
     this.getListBooks();
   }

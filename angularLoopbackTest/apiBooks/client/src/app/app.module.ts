@@ -20,6 +20,9 @@ import { DataApiService } from './services/data-api.service';
 import { ModalComponent } from './components/modal/modal.component';
 import { TruncateTextPipe } from './pipes/truncate-text.pipe';
 
+//externals
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -42,7 +45,10 @@ import { TruncateTextPipe } from './pipes/truncate-text.pipe';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgxSpinnerModule,
+    NgxPaginationModule
+    
 
   ],
   providers: [DataApiService],

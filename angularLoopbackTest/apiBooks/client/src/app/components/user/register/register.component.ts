@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserInterface } from 'src/app/models/user-interface';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -9,25 +11,46 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  constructor(private authService: AuthService , private route:Router) { }
+  constructor(private authService: AuthService , private route:Router, private location: Location) { }
   private user: UserInterface = {
     name: "",
     email: "",
     password: ""
   };
+  public isError=false;
+  public msgError='';
   ngOnInit() {}
 
-  onRegister(): void {
-    this.authService
-    .registerUser( this.user.name,  this.user.email,
+  onRegister(form:NgForm): void {
+    if(form.valid){
+      this.authService
+      .registerUser( this.user.name,  this.user.email,
+        
+        this.user.password )
+        .subscribe(user => {
+          this.authService.setUser(user);
+          const token =user.id;
+          this.authService.setToken(token);
+          this.route.navigate(['/user/profile']);
+          location.reload();
+          
+        }, res=>{
+          console.log(res.error); 
+          this.msgError= res.error.error.details.messages.email;
+          this.onIsError();
+
+        });
+
+    }else{
       
-      this.user.password )
-      .subscribe(user => {
-        this.authService.setUser(user);
-        let token =user.id;
-        this.authService.setToken(token);
-        this.route.navigate(['/user/profile']);
-      });
+      this.onIsError();
+    }
+    
+  }
+
+  onIsError():void{
+    this.isError = true;
+    setTimeout(() => { this.isError = false }, 4000);
   }
 
 }
