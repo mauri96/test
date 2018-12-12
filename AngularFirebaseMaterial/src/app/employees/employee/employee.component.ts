@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { EmployeeService } from 'src/app/shared/employee.service';
-import { DepartmentService } from 'src/app/shared/department.service';
-import { NotificationService } from 'src/app/shared/notification.service';
+
+import { EmployeeService } from '../../shared/employee.service';
+import { DepartmentService } from '../../shared/department.service';
+import { NotificationService } from '../../shared/notification.service';
 
 @Component({
   selector: 'app-employee',
@@ -23,7 +24,7 @@ export class EmployeeComponent implements OnInit {
   onClear() {
     this.service.form.reset();
     this.service.initializeFormGroup();
-    
+    this.notificationService.success(':: Submitted successfully');
   }
 
   onSubmit() {
@@ -34,4 +35,6 @@ export class EmployeeComponent implements OnInit {
       this.notificationService.success(':: Submitted successfully');
     }
   }
+
 }
+

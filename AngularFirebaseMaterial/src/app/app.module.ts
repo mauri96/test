@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {ReactiveFormsModule} from '@angular/forms';
+import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { EmployeeComponent } from './employees/employee/employee.component';
@@ -13,12 +13,14 @@ import {AngularFireDatabaseModule} from 'angularfire2/database';
 import {environment} from '../environments/environment';
 import { DepartmentService } from './shared/department.service';
 import { DatePipe } from '@angular/common';
+import { EmployeeListComponent } from './employees/employee-list/employee-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeeComponent,
     EmployeesComponent,
+    EmployeeListComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,7 +28,8 @@ import { DatePipe } from '@angular/common';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     AngularFireDatabaseModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig)
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    FormsModule
     
     
   ],
