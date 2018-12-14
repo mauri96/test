@@ -6,25 +6,29 @@ import { ChatService } from 'src/app/providers/chat.service';
   templateUrl: './chat.component.html',
   styles: []
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent {
 
-  constructor(public _cs:ChatService) { 
+  mensaje: string = "";
+
+  constructor(public _cs: ChatService) {
     this._cs.cargarMensaje().
-      subscribe((mensajes:any[])=>{
-        console.log(mensajes);
-      })
-
-  }
-  mensaje: string="";
-
-  ngOnInit() {
+      subscribe();
   }
 
 
-  enviar_mensaje(){
-    console.log(this.mensaje);
+  enviar_mensaje() {
+  
+    if(this.mensaje.length==0){
+      return;
+    }
+    else{
+      this._cs.agregarMensaje(this.mensaje)
+      .then(()=>this.mensaje="")
+      .catch((err)=>console.error('Error al enviar',err));
 
+    }
   }
+
 
   
 }
